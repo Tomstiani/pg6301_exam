@@ -6,8 +6,8 @@
 - [x] Implement Express and middleware
 - [x] Deploy to heroku though Heroku git
 - [x] React router
-- [ ] Implement MongoDB
-  - [ ] Read
+- [x] Implement MongoDB
+  - [x] Read
   - [ ] Write
   - [ ] Update
 - [ ] Implement OAuth and OpenID
