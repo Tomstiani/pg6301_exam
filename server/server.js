@@ -3,6 +3,8 @@ import * as path from "path";
 import MoviesApi from "./moviesApi.js";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -12,6 +14,15 @@ const mongoClient = new MongoClient(process.env.MONGODB_URI);
 mongoClient.connect().then(async () => {
   console.log("Connected to mongoDB");
   app.use("/api/movies", MoviesApi(mongoClient.db("pg6301")));
+});
+
+app.use(bodyParser.json());
+app.use(cookieParser(process.env.COOKIE_SECRET));
+
+app.post("/api/login", (req, res) => {
+  const { access_token } = req.body;
+  res.cookie("access_token", access_token, { signed: true });
+  res.sendStatus(200);
 });
 
 app.use(express.static("../client/dist/"));
