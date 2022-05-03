@@ -2,12 +2,17 @@ import express, { Router } from "express";
 import * as path from "path";
 import MoviesApi from "./moviesApi.js";
 import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
-new MongoClient();
-
-app.use("/api/movies", MoviesApi());
+const mongoClient = new MongoClient(process.env.MONGODB_URI);
+mongoClient.connect().then(async () => {
+  console.log("Connected to mongoDB");
+  app.use("/api/movies", MoviesApi(mongoClient.db("pg6301")));
+});
 
 app.use(express.static("../client/dist/"));
 

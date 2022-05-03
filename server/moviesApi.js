@@ -1,17 +1,13 @@
 import { Router } from "express";
 
-const movies = [
-  {
-    id: 1,
-    title: "The Shawshank Redemption",
-  },
-];
-
-export default function MoviesApi() {
+export default function MoviesApi(db) {
   const router = Router();
-  router.get("/", (req, res) => {
+
+  router.get("/", async (req, res) => {
+    const movies = await db.collection("movies").find().toArray();
     res.json(movies);
   });
+
   router.post("/add", (req, res) => {
     res.sendStatus(200);
   });
