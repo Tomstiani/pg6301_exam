@@ -11,10 +11,10 @@
   - [ ] Write
 - [ ] Update
 - [ ] Implement OAuth and OpenID
-- [ ] Google
+  - [ ] Google
 - [ ] Jest testing
-- [ ] 50% Line coverage
-- [ ] Github action test report
+  - [ ] 50% Line coverage
+  - [ ] Github action test report
 
 ## If possible
 
