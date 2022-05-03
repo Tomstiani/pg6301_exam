@@ -5,7 +5,9 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div>Login</div>
+      <div className="element-body">
+        <h1>Login</h1>
+      </div>
     </div>
   );
 };

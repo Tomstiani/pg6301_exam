@@ -42,18 +42,20 @@ const Movies = () => {
   return (
     <div>
       <Navbar />
-      <h1>Movie Database</h1>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {data && (
-        <div>
-          <ul>
-            {data.map((movie) => (
-              <li key={movie._id}>{movie.title}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <div className="element-body">
+        <h1>Movie Database</h1>
+        {loading && <div>Loading...</div>}
+        {error && <div>{error.message}</div>}
+        {data && (
+          <div>
+            <ul>
+              {data.map((movie) => (
+                <li key={movie._id}>{movie.title}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
