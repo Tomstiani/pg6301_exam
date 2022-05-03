@@ -1,4 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Movies from "./pages/Movies/Index";
+import AddMovie from "./pages/Movies/Add";
+import Login from "./pages/Login";
 
-ReactDOM.render(<h1>Hello Class!</h1>, document.querySelector("#app"));
+const Application = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/add" element={<AddMovie />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+ReactDOM.render(<Application />, document.querySelector("#app"));
