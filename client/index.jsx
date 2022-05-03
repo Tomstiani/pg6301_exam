@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Movies from "./pages/movies/Index";
-import AddMovie from "./pages/movies/Add";
+import Add from "./pages/movies/Add";
 import Login from "./pages/Login";
 
 const Application = () => {
@@ -12,7 +12,7 @@ const Application = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/add" element={<AddMovie />} />
+        <Route path="/movies/add" element={<Add />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
