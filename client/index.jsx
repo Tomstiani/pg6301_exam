@@ -2,8 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Movies from "./pages/Movies/Index";
-import AddMovie from "./pages/Movies/Add";
+import Movies from "./pages/movies/Index";
+import AddMovie from "./pages/movies/Add";
 import Login from "./pages/Login";
 
 const Application = () => {
