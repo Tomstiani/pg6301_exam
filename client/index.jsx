@@ -19,6 +19,4 @@ const Application = () => {
   );
 };
 
-const container = document.getElementById("app");
-const root = createRoot(container);
-root.render(<Application />);
+createRoot(document.getElementById("app")).render(<Application />);
