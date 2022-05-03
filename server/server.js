@@ -1,10 +1,14 @@
 import express, { Router } from "express";
 import * as path from "path";
 import MoviesApi from "./moviesApi.js";
+import { MongoClient } from "mongodb";
 
 const app = express();
 
+new MongoClient();
+
 app.use("/api/movies", MoviesApi());
+
 app.use(express.static("../client/dist/"));
 
 app.use((req, res, next) => {
