@@ -6,10 +6,10 @@
 - [x] Implement Express and middleware
 - [x] Deploy to heroku though Heroku git
 - [x] React router
-  - [ ] Implement MongoDB
+- [ ] Implement MongoDB
   - [ ] Read
   - [ ] Write
-- [ ] Update
+  - [ ] Update
 - [ ] Implement OAuth and OpenID
   - [ ] Google
 - [ ] Jest testing
