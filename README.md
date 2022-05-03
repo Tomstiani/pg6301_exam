@@ -1,5 +1,7 @@
 # Exam template
 
+Heroku application: https://pg6301-tomstiani.herokuapp.com/movies
+
 ## TODO-list
 
 - [x] Implement parcel
