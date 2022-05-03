@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Movies from "./pages/movies/Index";
@@ -19,4 +19,6 @@ const Application = () => {
   );
 };
 
-ReactDOM.render(<Application />, document.querySelector("#app"));
+const container = document.getElementById("app");
+const root = createRoot(container);
+root.render(<Application />);
