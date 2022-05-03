@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
 
-const Add = () => {
+const AddMovie = () => {
   return (
     <div>
       <Navbar />
@@ -10,4 +10,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default AddMovie;
