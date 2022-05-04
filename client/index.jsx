@@ -10,21 +10,6 @@ import Navbar from "./components/Navbar";
 
 export const LoginContext = React.createContext();
 
-export const getUserInfo = async () => {
-  //Soft check if the user is logged in
-  if (document.cookie.includes("access_token")) {
-    //Hard check if user is logged in
-    const { isLoggedIn, userInfo } = await fetchJSON("/api/login");
-    if (isLoggedIn) {
-      return { isLoggedin: true, userInfo: userInfo };
-    } else {
-      return { isLoggedin: false, userInfo: {} };
-    }
-  } else {
-    return { isLoggedin: false, userInfo: {} };
-  }
-};
-
 export const useLoader = (loadingFn) => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState();
