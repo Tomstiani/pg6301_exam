@@ -1,13 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../index";
-
-const fetchJSON = async (url) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return await response.json();
-};
+import { fetchJSON } from "../Movies/Index";
 
 const Login = () => {
   const {

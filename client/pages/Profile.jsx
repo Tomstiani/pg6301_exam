@@ -1,35 +1,5 @@
-import React, { useEffect, useState } from "react";
-
-const useLoader = (loadingFn) => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState();
-  const [error, setError] = useState();
-
-  const load = async () => {
-    try {
-      setLoading(true);
-      setData(await loadingFn());
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    load();
-  }, []);
-
-  return { loading, data, error };
-};
-
-const fetchJSON = async (url) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return await response.json();
-};
+import React from "react";
+import { fetchJSON, useLoader } from "./Movies/Index";
 
 const Profile = () => {
   const { loading, data, error } = useLoader(async () => {
