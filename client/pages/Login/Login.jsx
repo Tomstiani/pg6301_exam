@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../../index";
 
 const fetchJSON = async (url) => {
   const response = await fetch(url);
@@ -9,17 +10,17 @@ const fetchJSON = async (url) => {
 };
 
 const Login = () => {
+  const { discovery_endpoint, client_id, response_type } =
+    useContext(LoginContext);
+
   const [redirectURL, setRedirectURL] = useState();
 
   useEffect(async () => {
-    const { authorization_endpoint } = await fetchJSON(
-      "https://accounts.google.com/.well-known/openid-configuration"
-    );
+    const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
 
     const params = {
-      response_type: "token",
-      client_id:
-        "458398509144-96ll50575hbbb30at7bice2p008ruu1e.apps.googleusercontent.com",
+      response_type,
+      client_id,
       scope: "email profile",
       redirect_uri: `${window.location.origin}/login/callback`,
     };

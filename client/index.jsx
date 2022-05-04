@@ -7,6 +7,14 @@ import Callback from "./pages/Login/Callback";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 
+export const LoginContext = React.createContext({
+  client_id:
+    "458398509144-96ll50575hbbb30at7bice2p008ruu1e.apps.googleusercontent.com",
+  discovery_endpoint:
+    "https://accounts.google.com/.well-known/openid-configuration",
+  response_type: "token",
+});
+
 const Application = () => {
   return (
     <BrowserRouter>
