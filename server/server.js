@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 import * as path from "path";
-import MoviesApi from "./moviesApi.js";
+import articlesApi from "./articlesApi.js";
 import { MongoClient } from "mongodb";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
@@ -14,7 +14,7 @@ const app = express();
 const mongoClient = new MongoClient(process.env.MONGODB_URI);
 mongoClient.connect().then(async () => {
   console.log("Connected to mongoDB");
-  app.use("/api/movies", MoviesApi(mongoClient.db("pg6301")));
+  app.use("/api/articles", articlesApi(mongoClient.db("pg6301")));
 });
 
 const fetchJSON = async (url, options) => {
