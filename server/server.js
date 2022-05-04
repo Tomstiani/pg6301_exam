@@ -58,6 +58,16 @@ app.use((req, res, next) => {
   }
 });
 
+app.get("/api/config", (req, res) => {
+  res.json({
+    client_id:
+      "458398509144-96ll50575hbbb30at7bice2p008ruu1e.apps.googleusercontent.com",
+    discovery_endpoint:
+      "https://accounts.google.com/.well-known/openid-configuration",
+    response_type: "token",
+  });
+});
+
 const server = app.listen(process.env.PORT || 8080, () => {
   console.log(`Listening on http://localhost:${server.address().port}`);
 });

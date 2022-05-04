@@ -26,14 +26,13 @@ const Login = () => {
     };
 
     setRedirectURL(authorization_endpoint + "?" + new URLSearchParams(params));
+    window.location.href = redirectURL;
   }, []);
 
   return (
     <div>
       <div className="element-body">
-        <h1>Login</h1>
-        <a href={redirectURL}>Go to login</a>
-        <div>{redirectURL}</div>
+        <h1>Please wait</h1>
       </div>
     </div>
   );
