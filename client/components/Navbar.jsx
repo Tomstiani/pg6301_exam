@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchJSON } from "../index";
+import { checkLogin, fetchJSON } from "../index";
 
 const Navbar = () => {
   // is the user logged in?
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // check if the user is logged in
   useEffect(() => {
-    const checkLogin = async () => {
-      //Soft check if the user is logged in
-      if (document.cookie.includes("access_token")) {
-        //Hard check if user is logged in
-        const { isLoggedIn } = await fetchJSON("/api/login");
-        setIsLoggedIn(isLoggedIn);
-        console.log("isLoggedIn", isLoggedIn);
-      } else {
-        setIsLoggedIn(false);
-      }
-    };
-    checkLogin();
+    checkLogin().then((isLoggedIn) => setIsLoggedIn(isLoggedIn));
   }, []);
 
   return (
