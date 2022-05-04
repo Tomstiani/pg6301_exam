@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login/Login";
 import Callback from "./pages/Login/Callback";
 import Profile from "./pages/Profile";
+import Navbar from "./components/Navbar";
 
 const Application = () => {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

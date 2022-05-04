@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../../components/Navbar";
 
 const fetchJSON = async (url) => {
   const response = await fetch(url);
@@ -30,7 +29,6 @@ const Login = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="element-body">
         <h1>Login</h1>
         <a href={redirectURL}>Go to login</a>

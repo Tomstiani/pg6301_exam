@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
 
 const useLoader = (loadingFn) => {
   const [loading, setLoading] = useState(true);
@@ -46,7 +45,6 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
       <div className="element-body">
         <h1>Profile</h1>
         <div>{JSON.stringify(data)}</div>
