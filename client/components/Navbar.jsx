@@ -29,31 +29,29 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div>
-      <nav className="navbar-container">
+    <div className="navbar-container">
+      <nav>
         <div className="navbar-left">
           <div>
-            <Link to="/" className="link">
-              NG | Norges Gang
+            <Link to="/" className="link logo">
+              Norgesposten
             </Link>
           </div>
         </div>
         <div className="navbar-right">
           {isLoggedIn ? (
             <div className="navbar-signedin">
-              <Link to="/profile" className="link">
+              <Link to="/profile" className="link navbtn">
                 {user.name}
               </Link>
-              <Link to="/logout" className="link">
+              <Link to="/logout" className="link navbtn">
                 Log out
               </Link>
             </div>
           ) : (
-            <div className="login-btn">
-              <Link to="/login" className="link">
-                Login
-              </Link>
-            </div>
+            <Link to="/login" className="link login-link navbtn">
+              Login
+            </Link>
           )}
         </div>
       </nav>

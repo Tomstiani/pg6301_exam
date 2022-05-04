@@ -5,9 +5,10 @@
 }
 
 .element-body {
-  margin-top: 2rem;
-  margin-left: 3rem;
-  margin-right: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .navbar-signedin {
@@ -16,15 +17,36 @@
 }
 
 .navbar-container {
-  background-color: rgb(202, 230, 255);
+  background-color: rgb(255, 67, 67);
   width: 100vw;
   height: fit-content;
-  padding: 1rem;
-  padding-left: 5rem;
-  padding-right: 5rem;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 2.5rem;
+}
+
+.navbtn {
+  background-color: rgb(196, 37, 37);
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+nav {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  max-width: 1000px;
+  margin: auto;
 }
 
 .navbar-right {
