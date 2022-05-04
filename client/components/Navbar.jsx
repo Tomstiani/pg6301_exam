@@ -45,12 +45,12 @@ const Navbar = () => {
                 {user.name}
               </Link>
               <Link to="/logout" className="link navbtn">
-                Log out
+                Logg ut
               </Link>
             </div>
           ) : (
             <Link to="/login" className="link login-link navbtn">
-              Login
+              Logg inn
             </Link>
           )}
         </div>
