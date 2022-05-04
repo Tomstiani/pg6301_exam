@@ -31,10 +31,18 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 let isLoggedIn = false;
 
 app.post("/api/login", (req, res) => {
-  const { access_token } = req.body;
-  res.cookie("access_token", access_token, { signed: true });
-  isLoggedIn = true;
-  res.sendStatus(200);
+  //If user wants to log in
+  if (req.body.isLoggedIn === true) {
+    const { access_token } = req.body;
+    res.cookie("access_token", access_token, { signed: true });
+    isLoggedIn = true;
+    res.sendStatus(200);
+  }
+  //If user wants to log out
+  else if (req.body.isLoggedIn === false) {
+    isLoggedIn = false;
+    res.sendStatus(200);
+  }
 });
 
 app.get("/api/login", async (req, res) => {
@@ -47,6 +55,29 @@ app.get("/api/login", async (req, res) => {
   const userInfo = await fetchJSON(userinfo_endpoint, {
     headers: { Authorization: `Bearer ${access_token}` },
   });
+
+  //Check if user exists in database
+  const user = await mongoClient.db("pg6301").collection("users").findOne({
+    email: userInfo.email,
+  });
+  if (!user) {
+    //If user doesn't exist, create a new user
+    await mongoClient.db("pg6301").collection("users").insertOne({
+      email: userInfo.email,
+      name: userInfo.name,
+      picture: userInfo.picture,
+    });
+    res.cookie(
+      "user",
+      JSON.stringify({ name: userInfo.name, mail: userInfo.email }),
+      { signed: true }
+    );
+  } else {
+    //If user exists, set user-cookie
+    res.cookie("user", JSON.stringify({ name: user.name, mail: user.email }), {
+      signed: true,
+    });
+  }
   res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
 });
 

@@ -11,7 +11,7 @@ const Callback = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ access_token }),
+      body: JSON.stringify({ access_token, isLoggedIn: true }),
     }).then(() => {
       window.location.href = "/";
     });
