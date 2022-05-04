@@ -1,5 +1,5 @@
 import React from "react";
-import { fetchJSON, useLoader } from "./Movies/Index";
+import { fetchJSON, useLoader } from "../index";
 
 const Profile = () => {
   const { loading, data, error } = useLoader(async () => {

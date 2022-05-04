@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { fetchJSON } from "../pages/Movies/Index";
+import { fetchJSON } from "../index";
 
 const Navbar = () => {
   // is the user logged in?

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../index";
-import { fetchJSON } from "../Movies/Index";
+import { fetchJSON } from "../../index";
 
 const Login = () => {
   const {

@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 
 export const LoginContext = React.createContext();
 
-const useLoader = (loadingFn) => {
+export const useLoader = (loadingFn) => {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState();
   const [data, setData] = React.useState();
@@ -33,7 +33,7 @@ const useLoader = (loadingFn) => {
   return { loading, error, data };
 };
 
-const fetchJSON = async (url) => {
+export const fetchJSON = async (url) => {
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(response.statusText);
