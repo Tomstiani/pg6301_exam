@@ -11,7 +11,7 @@ const Navbar = () => {
     const getUserInfo = async () => {
       //Soft check if the user is logged in
       if (document.cookie.includes("access_token")) {
-        //Hard check if user is logged in
+        //Hard check if user is logged in & get user info
         const { isLoggedIn, userInfo } = await fetchJSON("/api/login");
         if (isLoggedIn) {
           setIsLoggedIn(true);
