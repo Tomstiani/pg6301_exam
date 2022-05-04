@@ -12,7 +12,7 @@ Heroku application: https://pg6301-tomstiani.herokuapp.com/movies
   - [x] Read
   - [ ] Write
   - [ ] Update
-- [x] Implement OAuth and OpenID
+- [x] Implement OpenID
   - [x] Google
 - [ ] Jest testing
   - [ ] 50% Line coverage
@@ -20,5 +20,5 @@ Heroku application: https://pg6301-tomstiani.herokuapp.com/movies
 
 ## If possible
 
-- [ ] Implement second login method (Active Directory)
+- [ ] Implement second login method with OAuth (Active Directory)
 - [ ] Websockets
