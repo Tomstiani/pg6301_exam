@@ -12,8 +12,8 @@ Heroku application: https://pg6301-tomstiani.herokuapp.com/movies
   - [x] Read
   - [ ] Write
   - [ ] Update
-- [ ] Implement OAuth and OpenID
-  - [ ] Google
+- [x] Implement OAuth and OpenID
+  - [x] Google
 - [ ] Jest testing
   - [ ] 50% Line coverage
   - [ ] Github action test report
