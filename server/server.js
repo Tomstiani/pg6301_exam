@@ -67,16 +67,6 @@ app.get("/api/login", async (req, res) => {
       name: userInfo.name,
       picture: userInfo.picture,
     });
-    res.cookie(
-      "user",
-      JSON.stringify({ name: userInfo.name, mail: userInfo.email }),
-      { signed: true }
-    );
-  } else {
-    //If user exists, set user-cookie
-    res.cookie("user", JSON.stringify({ name: user.name, mail: user.email }), {
-      signed: true,
-    });
   }
   res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
 });

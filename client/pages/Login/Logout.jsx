@@ -5,8 +5,6 @@ const Logout = () => {
     //remove access token from cookies
     document.cookie =
       "access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    //remove user info from cookies
-    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     //update server to indicate user is logged out
     const res = fetch("/api/logout", {
       method: "POST",
