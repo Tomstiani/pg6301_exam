@@ -28,9 +28,12 @@ const fetchJSON = async (url, options) => {
 app.use(bodyParser.json());
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
+let isLoggedIn = false;
+
 app.post("/api/login", (req, res) => {
   const { access_token } = req.body;
   res.cookie("access_token", access_token, { signed: true });
+  isLoggedIn = true;
   res.sendStatus(200);
 });
 
@@ -44,8 +47,7 @@ app.get("/api/login", async (req, res) => {
   const userInfo = await fetchJSON(userinfo_endpoint, {
     headers: { Authorization: `Bearer ${access_token}` },
   });
-
-  res.json({ userInfo });
+  res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
 });
 
 app.use(express.static("../client/dist/"));
@@ -58,13 +60,16 @@ app.use((req, res, next) => {
   }
 });
 
-app.get("/api/config", (req, res) => {
+app.get("/api/login-info", (req, res) => {
   res.json({
-    client_id:
-      "458398509144-96ll50575hbbb30at7bice2p008ruu1e.apps.googleusercontent.com",
-    discovery_endpoint:
-      "https://accounts.google.com/.well-known/openid-configuration",
-    response_type: "token",
+    auth: {
+      client_id:
+        "458398509144-96ll50575hbbb30at7bice2p008ruu1e.apps.googleusercontent.com",
+      discovery_endpoint:
+        "https://accounts.google.com/.well-known/openid-configuration",
+      response_type: "token",
+      scope: "email profile",
+    },
   });
 });
 

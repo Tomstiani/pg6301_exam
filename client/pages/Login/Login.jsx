@@ -10,23 +10,26 @@ const fetchJSON = async (url) => {
 };
 
 const Login = () => {
-  const { discovery_endpoint, client_id, response_type } =
-    useContext(LoginContext);
-
-  const [redirectURL, setRedirectURL] = useState();
+  const {
+    auth: { discovery_endpoint, client_id, response_type, scope },
+  } = useContext(LoginContext);
 
   useEffect(async () => {
     const { authorization_endpoint } = await fetchJSON(discovery_endpoint);
+    console.log(authorization_endpoint);
 
     const params = {
-      response_type,
-      client_id,
-      scope: "email profile",
+      response_type: response_type,
+      client_id: client_id,
+      scope: scope,
       redirect_uri: `${window.location.origin}/login/callback`,
     };
 
-    setRedirectURL(authorization_endpoint + "?" + new URLSearchParams(params));
-    window.location.href = redirectURL;
+    console.log(new URLSearchParams(params).toString());
+
+    window.location.href = `${authorization_endpoint}?${new URLSearchParams(
+      params
+    ).toString()}`;
   }, []);
 
   return (

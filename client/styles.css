@@ -10,6 +10,11 @@
   margin-right: 3rem;
 }
 
+.navbar-signedin {
+  display: flex;
+  gap: 1rem;
+}
+
 .navbar-container {
   background-color: rgb(202, 230, 255);
   width: 100vw;

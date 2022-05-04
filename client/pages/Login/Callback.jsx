@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Callback = () => {
-  const navigate = useNavigate();
   useEffect(() => {
     const { access_token } = Object.fromEntries(
       new URLSearchParams(window.location.hash.substring(1))
@@ -14,8 +12,9 @@ const Callback = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ access_token }),
+    }).then(() => {
+      window.location.href = "/";
     });
-    navigate("/");
   });
 
   return <h1>Please wait...</h1>;

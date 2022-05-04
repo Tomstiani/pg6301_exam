@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
 
-const useLoader = (loadingFunction) => {
+export const useLoader = (loadingFunction) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState();
   const [data, setData] = useState(undefined);
@@ -24,7 +24,7 @@ const useLoader = (loadingFunction) => {
   return { loading, error, data };
 };
 
-const fetchJSON = async (url) => {
+export const fetchJSON = async (url) => {
   const res = await fetch(url);
   if (!res.ok) {
     throw new Error(
