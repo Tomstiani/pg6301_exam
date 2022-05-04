@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { checkLogin, fetchJSON } from "../index";
+import { fetchJSON } from "../index";
 
 const Navbar = () => {
   // is the user logged in?
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
   useEffect(() => {
-    checkLogin().then((isLoggedIn) => setIsLoggedIn(isLoggedIn));
+    const getUserInfo = async () => {
+      //Soft check if the user is logged in
+      if (document.cookie.includes("access_token")) {
+        //Hard check if user is logged in
+        const { isLoggedIn, userInfo } = await fetchJSON("/api/login");
+        if (isLoggedIn) {
+          setIsLoggedIn(true);
+          setUser(userInfo);
+        } else {
+          setIsLoggedIn(false);
+          setUser({});
+        }
+      } else {
+        setIsLoggedIn(false);
+        setUser({});
+      }
+    };
+    getUserInfo();
   }, []);
 
   return (
@@ -23,7 +42,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <div className="navbar-signedin">
               <Link to="/profile" className="link">
-                Profile
+                {user.name}
               </Link>
               <Link to="/logout" className="link">
                 Log out

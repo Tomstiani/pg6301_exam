@@ -1,23 +1,46 @@
 import React, { useEffect, useState } from "react";
 import Overview from "../components/Overview";
-import { checkLogin } from "../index";
+import { fetchJSON } from "../index";
 
 const Home = () => {
   // is the user logged in?
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    checkLogin().then((isLoggedIn) => setIsLoggedIn(isLoggedIn));
+    const getUserInfo = async () => {
+      //Soft check if the user is logged in
+      if (document.cookie.includes("access_token")) {
+        //Hard check if user is logged in
+        const { isLoggedIn, userInfo } = await fetchJSON("/api/login");
+        if (isLoggedIn) {
+          setIsLoggedIn(true);
+          setUser(userInfo);
+        } else {
+          setIsLoggedIn(false);
+          setUser({});
+        }
+      } else {
+        setIsLoggedIn(false);
+        setUser({});
+      }
+    };
+    getUserInfo();
   }, []);
 
-  return (
-    <div>
-      <div className="element-body">
-        <h1>Home</h1>
-        <Overview />
+  if (isLoggedIn) {
+    return (
+      <div>
+        <div>{user.name} is logged in</div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div>
+        <div>No user logged in</div>
+      </div>
+    );
+  }
 };
 
 export default Home;
