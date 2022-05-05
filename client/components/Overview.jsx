@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { fetchJSON, useLoader } from "../index";
 
 const Overview = ({ isLoggedIn }) => {
   const DUMMY_DATA = [
@@ -60,15 +60,11 @@ const Overview = ({ isLoggedIn }) => {
     return POPULAR_TOPICS;
   };
 
-  const getArticles = () => {
-    return DUMMY_DATA;
-  };
-
   return (
     <>
       <div>
         <Filters filters={getPopularTopics()} />
-        <ArticleList articles={getArticles()} isLoggedIn={isLoggedIn} />
+        <ArticleList isLoggedIn={isLoggedIn} />
       </div>
     </>
   );
@@ -98,13 +94,33 @@ const FilterCard = ({ filter }) => {
   );
 };
 
-const ArticleList = ({ articles, isLoggedIn }) => {
+const ArticleList = ({ isLoggedIn }) => {
+  const [articles, setArticles] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const fetchArticles = () => {
+    setIsLoading(true);
+    fetchJSON("/api/articles").then((data) => {
+      setArticles(data);
+    });
+    setIsLoading(false);
+  };
+  useLoader(fetchArticles);
+
   return (
     <>
       <div className="overview-articlelist">
-        {articles.map((article) => (
-          <Article article={article} key={article.id} isLoggedIn={isLoggedIn} />
-        ))}
+        {isLoading ? (
+          <div className="loader">Loading...</div>
+        ) : (
+          articles.map((article) => (
+            <Article
+              article={article}
+              key={article._id}
+              isLoggedIn={isLoggedIn}
+            />
+          ))
+        )}
       </div>
     </>
   );
@@ -116,7 +132,7 @@ const Article = ({ article, isLoggedIn }) => {
       className="article-container"
       onClick={() => {
         if (isLoggedIn) {
-          window.location.href = `/article/${article.id}`;
+          window.location.href = `/article/${article._id}`;
         } else {
           alert("Du må være logget inn for å se dette innlegget");
         }
@@ -124,13 +140,12 @@ const Article = ({ article, isLoggedIn }) => {
     >
       <div className="article-thumbnail">
         <img
-          src={article.thumbnail}
+          src={article.thumbnail.img}
           alt="thumbnail"
           className="thumbnail-img"
         />
       </div>
-      <div className="article-title">{article.title}</div>
-      <div className="article-topics">{article.topics.join(", ")}</div>
+      <div className="article-title">{article.thumbnail.title}</div>
     </div>
   );
 };
