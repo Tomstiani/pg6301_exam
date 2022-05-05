@@ -41,6 +41,11 @@ const Navbar = () => {
         <div className="navbar-right">
           {isLoggedIn ? (
             <div className="navbar-signedin">
+              {user.role === "journalist" ? (
+                <Link to="/addArticle" className="link navbtn">
+                  Add Article
+                </Link>
+              ) : null}
               <Link to="/profile" className="link navbtn">
                 {user.name}
               </Link>
