@@ -52,14 +52,13 @@ export default function loginApi(db) {
             });
           }
         });
-    } catch (error) {
-      console.log(error);
-      res.send(error);
-    } finally {
       const user = await db.collection("users").findOne({
         email: userInfo.email,
       });
       res.json({ userInfo: user, isLoggedIn: isLoggedIn });
+    } catch (error) {
+      console.log(error);
+      res.send(error);
     }
   });
 
