@@ -66,7 +66,7 @@ const Application = () => {
           <Route path="/login/callback" element={<Callback />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/articles/:id?" element={<Article />} />
+          <Route path="/article/:id" element={<Article />} />
         </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
