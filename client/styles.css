@@ -165,3 +165,69 @@ nav {
 .profile-header img {
   border-radius: 100%;
 }
+
+/* Article */
+.article-form-container {
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  background-color: rgb(234, 234, 234);
+  border-radius: 5px;
+}
+
+.article-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.article-form label input {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgb(220, 220, 220);
+  border-radius: 5px;
+  border: none;
+}
+
+.formgroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+#form-article-subtitle {
+  height: 100px;
+}
+
+.article-form label {
+  font-size: 1rem;
+}
+
+.article-form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgb(220, 220, 220);
+  border-radius: 5px;
+  border: none;
+  height: 500px;
+}
+
+.article-form button {
+  background-color: rgb(43, 156, 237);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  color: white;
+  cursor: pointer;
+  width: 100%;
+  font-size: 2rem;
+}
