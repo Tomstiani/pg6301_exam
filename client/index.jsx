@@ -7,6 +7,8 @@ import Logout from "./pages/Login/Logout";
 import Callback from "./pages/Login/Callback";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
+import Article from "./pages/Article";
+import NotFound from "./pages/NotFound";
 
 export const LoginContext = React.createContext();
 
@@ -59,10 +61,12 @@ const Application = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
           <Route path="/login" element={<Login />} />
           <Route path="/login/callback" element={<Callback />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/articles/:id?" element={<Article />} />
         </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
