@@ -52,9 +52,16 @@ app.get("/api/login", async (req, res) => {
     "https://accounts.google.com/.well-known/openid-configuration"
   );
 
-  const userInfo = await fetchJSON(userinfo_endpoint, {
-    headers: { Authorization: `Bearer ${access_token}` },
-  });
+  let userInfo;
+
+  try {
+    userInfo = await fetchJSON(userinfo_endpoint, {
+      headers: { Authorization: `Bearer ${access_token}` },
+    });
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
 
   //Check if user exists in database
   const user = await mongoClient.db("pg6301").collection("users").findOne({

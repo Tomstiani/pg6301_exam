@@ -31,7 +31,7 @@ const Home = () => {
   if (isLoggedIn) {
     return (
       <div className="element-body">
-        <div>{user.name} is logged in</div>
+        <Overview isLoggedIn={isLoggedIn} />
       </div>
     );
   } else {

@@ -34,7 +34,7 @@ const Navbar = () => {
         <div className="navbar-left">
           <div>
             <Link to="/" className="link logo">
-              Norgesposten
+              Polarposten
             </Link>
           </div>
         </div>
