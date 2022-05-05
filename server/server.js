@@ -60,23 +60,31 @@ app.get("/api/login", async (req, res) => {
     });
 
     //Check if user exists in database
-    const user = await mongoClient.db("pg6301").collection("users").findOne({
-      email: userInfo.email,
-    });
-
-    if (!user) {
-      //If user doesn't exist, create a new user
-      await mongoClient.db("pg6301").collection("users").insertOne({
+    await mongoClient
+      .db("pg6301")
+      .collection("users")
+      .findOne({
         email: userInfo.email,
-        name: userInfo.name,
-        picture: userInfo.picture,
+      })
+      .then((user) => {
+        if (!user) {
+          //If user doesn't exist, create a new user
+          mongoClient.db("pg6301").collection("users").insertOne({
+            email: userInfo.email,
+            name: userInfo.name,
+            picture: userInfo.picture,
+            role: "user",
+          });
+        }
       });
-    }
   } catch (error) {
     console.log(error);
     res.send(error);
   } finally {
-    res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
+    const user = await mongoClient.db("pg6301").collection("users").findOne({
+      email: userInfo.email,
+    });
+    res.json({ userInfo: user, isLoggedIn: isLoggedIn });
   }
 });
 
