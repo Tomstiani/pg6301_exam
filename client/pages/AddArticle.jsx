@@ -54,19 +54,22 @@ const ArticleForm = ({ user }) => {
     });
     data.author = { name: user.name, id: user._id };
 
-    console.log(data);
+    console.log("sendind data", data);
 
-    // const response = await fetchJSON("/api/articles/add", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-    // console.log(response);
-    // if (response.success) {
-    //   alert("Article added");
-    // }
+    await fetch("/api/articles/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).then((res) => {
+      if (res.status === 200) {
+        alert("Article posted");
+        window.location.href = "/";
+      } else {
+        console.log("error", res);
+      }
+    });
 
     form.reset();
   };
@@ -81,7 +84,7 @@ const ArticleForm = ({ user }) => {
           <input
             type="text"
             id="form-thumbnail-title"
-            name="thumbnail-title"
+            name="thumbnailTitle"
             required
           />
         </label>
@@ -90,7 +93,7 @@ const ArticleForm = ({ user }) => {
           <input
             type="text"
             id="form-thumbnail-image"
-            name="thumbnail-img"
+            name="thumbnailImage"
             required
           />
         </label>

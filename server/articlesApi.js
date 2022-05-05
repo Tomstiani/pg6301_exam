@@ -9,8 +9,34 @@ export default function articlesApi(db) {
     res.json(articles);
   });
 
-  router.post("/add", (req, res) => {
-    res.sendStatus(200);
+  router.post("/", async (req, res) => {
+    const form = req.body;
+    const article = {
+      author: {
+        name: form.author.name,
+        id: form.author.id,
+      },
+      thumbnail: {
+        title: form.thumbnailTitle,
+        img: form.thumbnailImage,
+      },
+      content: {
+        title: form.title,
+        subtitle: form.subtitle,
+        img: form.img,
+        text: form.text,
+      },
+      topics: form.tags.split(","),
+    };
+    console.log("Created article:", article);
+    await db.collection("articles").insertOne(article, (err, result) => {
+      if (err) {
+        console.log("Error:", err);
+        res.status(500).send("Error");
+      } else {
+        res.status(200).send("OK");
+      }
+    });
   });
 
   router.get("/:id", async (req, res) => {
@@ -19,5 +45,6 @@ export default function articlesApi(db) {
     });
     res.json(article);
   });
+
   return router;
 }
