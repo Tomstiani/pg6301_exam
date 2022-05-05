@@ -20,12 +20,13 @@ const Profile = () => {
 
     //post changes
     try {
-      await fetch("/api/profile", {
+      await fetch("/api/profile/change-role", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          user: data.userInfo,
           role: e.target.value,
         }),
       });

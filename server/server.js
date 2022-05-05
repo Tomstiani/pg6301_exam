@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import fetch from "node-fetch";
+import profileApi from "./profileApi.js";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const mongoClient = new MongoClient(process.env.MONGODB_URI);
 mongoClient.connect().then(async () => {
   console.log("Connected to mongoDB");
   app.use("/api/articles", articlesApi(mongoClient.db("pg6301")));
+  app.use("/api/profile", profileApi(mongoClient.db("pg6301")));
 });
 
 const fetchJSON = async (url, options) => {
