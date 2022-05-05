@@ -96,21 +96,25 @@ const FilterCard = ({ filter }) => {
 
 const ArticleList = ({ isLoggedIn }) => {
   const [articles, setArticles] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
 
   const fetchArticles = () => {
-    setIsLoading(true);
     fetchJSON("/api/articles").then((data) => {
       setArticles(data);
     });
-    setIsLoading(false);
   };
-  useLoader(fetchArticles);
+  const { loading, error } = useLoader(fetchArticles);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+  if (error) {
+    return <h1>Error: {error.message}</h1>;
+  }
 
   return (
     <>
       <div className="overview-articlelist">
-        {isLoading ? (
+        {loading ? (
           <div className="loader">Loading...</div>
         ) : (
           articles.map((article) => (
@@ -145,7 +149,7 @@ const Article = ({ article, isLoggedIn }) => {
           className="thumbnail-img"
         />
       </div>
-      <div className="article-title">{article.thumbnail.title}</div>
+      <div className="article-thumbnail-title">{article.thumbnail.title}</div>
     </div>
   );
 };
