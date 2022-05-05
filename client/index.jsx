@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Article from "./pages/Article";
 import NotFound from "./pages/NotFound";
+import AddArticle from "./pages/AddArticle";
 
 export const LoginContext = React.createContext();
 
@@ -67,6 +68,7 @@ const Application = () => {
           <Route path="/logout" element={<Logout />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/article/:id" element={<Article />} />
+          <Route path="/add-article" element={<AddArticle />} />
         </Routes>
       </BrowserRouter>
     </LoginContext.Provider>
