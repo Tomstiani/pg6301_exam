@@ -58,24 +58,26 @@ app.get("/api/login", async (req, res) => {
     userInfo = await fetchJSON(userinfo_endpoint, {
       headers: { Authorization: `Bearer ${access_token}` },
     });
+
+    //Check if user exists in database
+    const user = await mongoClient.db("pg6301").collection("users").findOne({
+      email: userInfo.email,
+    });
+
+    if (!user) {
+      //If user doesn't exist, create a new user
+      await mongoClient.db("pg6301").collection("users").insertOne({
+        email: userInfo.email,
+        name: userInfo.name,
+        picture: userInfo.picture,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.send(error);
+  } finally {
+    res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
   }
-
-  //Check if user exists in database
-  const user = await mongoClient.db("pg6301").collection("users").findOne({
-    email: userInfo.email,
-  });
-  if (!user) {
-    //If user doesn't exist, create a new user
-    await mongoClient.db("pg6301").collection("users").insertOne({
-      email: userInfo.email,
-      name: userInfo.name,
-      picture: userInfo.picture,
-    });
-  }
-  res.json({ userInfo: userInfo, isLoggedIn: isLoggedIn });
 });
 
 app.use(express.static("../client/dist/"));
