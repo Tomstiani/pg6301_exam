@@ -42,7 +42,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <div className="navbar-signedin">
               {user.role === "journalist" ? (
-                <Link to="/addArticle" className="link navbtn">
+                <Link to="/add-article" className="link navbtn">
                   Add Article
                 </Link>
               ) : null}
