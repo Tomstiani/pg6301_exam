@@ -28,19 +28,11 @@ const Home = () => {
     getUserInfo();
   }, []);
 
-  if (isLoggedIn) {
-    return (
-      <div className="element-body">
-        <Overview isLoggedIn={isLoggedIn} />
-      </div>
-    );
-  } else {
-    return (
-      <div className="element-body">
-        <div>No user logged in</div>
-      </div>
-    );
-  }
+  return (
+    <div className="element-body">
+      <Overview isLoggedIn={isLoggedIn} />
+    </div>
+  );
 };
 
 export default Home;
